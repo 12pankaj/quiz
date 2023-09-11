@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quiz</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style type="text/css">
+    	#quizssh{
+    		font-size: 20px;
+    	}
+    </style>
+</head>
+<body class="bg-dark text-white">
+	<!-- <h1 align="center">Wel-come</h1>
+	<form>
+		<h1>Enter your details</h1>
+		<input type="text" placeholder="First Name" />
+		<input type="text" placeholder="Last Name" >
+		<input type="radio" name="gender">Male  
+		<input type="radio" name="gender">Female
+		<input type="number" name="monum" placeholder="Mobile No.">  
+	</form>
+
+ -->
+ <div id="menu" class="col-12 col-md-6   offset-md-3 border-info border-5 bg-danger border p-5 mt-5">
+ 	
+ 	
+	<h3>Web Development</h3>
+		<input type="radio" name="quiz">Html<br>
+		<input type="radio" name="quiz">Css<br>
+		<input type="radio" name="quiz">Java script<br>
+		<input type="radio" name="quiz">Php<br>
+	<h3> Programming Languages</h3>	
+		<input type="radio" name="quiz">C<br>
+		<input type="radio" name="quiz">Java<br>
+		<input type="radio" name="quiz">Python<br>
+		<br>
+		<div class="text-center">
+		<button onclick="chechq()">Submit</button>
+		</div>
+	</div>
+		<div id="quizssh" style="display: none;text-align: center;" class=" row col-12 col-md-6   offset-md-3 border-info border-5 bg-light text-info border p-5 mt-5">
+		<h2  class="col-4 "> Quiz </h2><i class="fa-solid fa-circle-check col-4" id="right" style="color: #24f109; font-size: 20px; margin-top: 5px;"> 0</i><i class="fa-solid fa-circle-xmark col-4" id="wrong" style="color: #f01c05; font-size: 20px; margin-top: 5px;"> 0</i>
+<p id='qus'  class="col-12 "></p>	
+<div class="text-dark">	<p class="col-12 "><input type='radio' name='ans' onclick='result(0)' ><span id='a'></span></p>		<p class="col-12"><input type='radio' name='ans' onclick='result(1)'  ><span id='b'></span></p>	<p class="col-12"><input type='radio' name='ans' onclick='result(2)' ><span id='c'></span></p>		<p class="col-12"><input type='radio' name='ans' onclick='result(3)' ><span id='d'></span></p></div>
+</div>
+<script type="text/javascript" src="phpq.js"></script>
+<script type="text/javascript" src="pythonq.js"></script>
+<script type="text/javascript" src="cq.js"></script>
+<script type="text/javascript" src="javaq.js"></script>
+<script type="text/javascript" src="htmlq.js"></script>
+<script type="text/javascript" src="jsq.js"></script>
+<script type="text/javascript" src="css.js"></script>
+		<script type="text/javascript">
+				let quiz = document.querySelectorAll('input[type="radio"]')
+				var qu=0;
+				var q=0;
+				var qus = document.getElementById('qus')
+				var next	 = document.getElementById('next')
+				var ans = document.getElementsByName("ans")
+				var ana= document.getElementById("a")
+				var anb= document.getElementById("b")
+				var anc= document.getElementById("c")
+				var and= document.getElementById("d")
+				var wrg= document.getElementById("wrong")
+				var rig= document.getElementById("right")
+				var quizssh= document.getElementById("quizssh")
+				var menu= document.getElementById("menu")
+				var correct;
+				var re=1;
+				var a=1;
+				var a2=1;
+				var arr1=[];
+				var qri=0;
+				var qwr=0;
+			   function genrotrnadom() {
+			   	do
+			    {
+				    var r = Math.trunc(Math.random() * 12)+1;
+				    console.log(r)
+				     var arrr=0;
+				        while(arrr<=a2)
+				        {
+				            if(arr1[arrr]==r)
+				            {
+				            r = Math.trunc(Math.random() * 12)+1 ;
+				            console.log(r +"new")
+				            arrr =-1;
+				        }
+				            arrr++;
+				        }
+				               arr1[a2-1]=r;
+
+				                a2++;
+				}while(a2<=12);
+				
+			   }
+			    			
+			function chechq() {
+		genrotrnadom();
+				for(i=0;i<7;i++) if(quiz[i].checked==true)  	qu=i; 
+					 
+
+					whichquiz(qu);
+				
+			}
+
+			function whichquiz(qu) {
+				switch(qu)
+				{
+					case 0:
+						quizh()
+						break;
+					case 1:
+						quizcs()
+						break;
+					case 2:
+						quizjs()
+						break;
+					case 3:
+						quizph()
+						break;
+					case 4:
+						quizpy()
+						break;
+					case 5:
+						quizc()
+						break;
+					case 6:
+						quizja()
+						break;
+				}
+			}
+			
+			function result(x) {
+			if(q>=12 || re==0)	return;
+			console.log(qu)
+			if(ans[x].checked==true && x==correct)
+			{
+				 re=0;
+				 qri++;
+				rig.innerText=" "+qri;
+				ans[x].classList.add("form-check-input","bg-success");
+				q++;
+
+				setTimeout(() => {	if(q<=11){	 whichquiz(qu); }
+				else if(q>=12){		var conf=confirm("Result!\nTotal Question = 12\nwrong answer ="+qwr+"\nright answer ="+qri+"\nyour score ="+(qri*5)+"/60 \nyou play agian")
+			if(conf==true)	location.reload()
+			else		alert("bye bye...")}	}, 1000);
+			}
+			else{
+				 re=0;
+				 qwr++;
+				 wrg.innerText=" "+qwr;
+					ans[x].classList.add("form-check-input","bg-danger");
+				ans[correct].classList.add("form-check-input","bg-success");
+
+	 				q++;
+				setTimeout(() => {	if(q<=11){	 whichquiz(qu); }
+				else if(q>=12){	var conf=confirm("Result!\nTotal Question = 12\nwrong answer ="+qwr+"\nright answer ="+qri+"\nyour score ="+(qri*5)+"/60 \nyou play agian")
+			if(conf==true)	location.reload()
+			else		alert("bye bye...")}	 	}, 1000);
+				} 
+			
+		} 
+
+
+
+
+
+
+
+
+
+		</script>
+</body>
+</html>
